@@ -1,0 +1,15 @@
+課題02
+1. UPDATEを使って"ユニーク値" 「7」の書籍名を”RB”に変更するSQLを作る
+UPDATE gs_bm_table SET book_name = 'RB' WHERE id = 7;
+
+2. UPDATEを使って"ユニーク値" 「3,9」の書籍名を”PY”に変更するSQLを作る
+UPDATE gs_bm_table SET book_name = 'PY' WHERE id = 3 OR id = 9;
+
+3. UPDATEを使って"ユニーク値"「6〜8」の登録日時を現在時刻に変更する SQLを作る
+UPDATE gs_bm_table SET indate = sysdate() WHERE id >= 6 AND id <= 8;
+
+4. UPDATEを使って"書籍名"「JS本」を書籍名「PHP&JS」に変更するSQLを作る
+UPDATE gs_bm_table SET book_name = 'PHP&JS' WHERE book_name = 'JS本';
+
+5. UPDATEを使って”書籍コメント”が入って無いレコードがあれば、”書籍コメントに”に「未入力」と変更するSQLを作る。
+UPDATE gs_bm_table SET book_cmt = '未入力' WHERE book_cmt = '';
