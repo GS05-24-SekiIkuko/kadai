@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+<script>
+$(document).ready(function(){
+//ここにJSを記述
+    /* 
+    0:グー
+    1:チョキ
+    2:パー
+    */
+    var str = ["グー", "チョキ", "パー"]; 
+    
+    //各ボタンを押下した時の処理
+    $('.gu_btn').on('click', function(){
+        var myHand = 0;
+        setResult(myHand);
+        $('#myhand').html('<img src="img/me' + myHand + '.png" height="360px">');
+    });
+    $('.cho_btn').on('click', function(){
+        var myHand = 1;
+        setResult(myHand);
+        $('#myhand').html('<img src="img/me' + myHand + '.png" height="360px">');
+    });
+    $('.par_btn').on('click', function(){
+        var myHand = 2;
+        setResult(myHand);
+        $('#myhand').html('<img src="img/me' + myHand + '.png" height="360px">');
+    });
+    
+    function setResult(me){
+        var result;
+        var resultStr = ["勝ち","負け","あいこ"];
+        //PCの手をランダムで決定
+        var hand = Math.floor(Math.random() * 3);
+        console.log(hand + ":" + str[hand]);
+        //画面に表示
+        $('#pc').html(str[hand]);
+        $('#pchand').html('<img src="img/pc' + hand + '.png" height="360px">');
+        $('.jan').css("visibility","visible");
+        $('.lose').css("visibility","hidden");
+        $('.win').css("visibility","hidden");
+        
+        if(me == hand){
+            //あいこ
+            result = 2;
+        }else if(me == 0 && hand == 1){
+            //あなたの勝ち
+            result = 0;
+        }else if(me == 1 && hand == 2){
+            //あなたの勝ち
+            result = 0;
+        }else if(me == 2 && hand == 0){
+            //あなたの勝ち
+            result = 0;
+        }else{
+            //あなたの負け
+            result = 1; 
+        }
+        
+        $('#num').html(resultStr[result]);
+        
+        if(0 == result){
+            //勝った場合
+            setTimeout(function(){
+                $('.win').css("visibility","visible");
+                $('#winImage').fadeTo(1000);
+                $('ul').css("visibility","hidden");
+            }, 500);
+            setTimeout(function(){
+                $('#winImage').css("visibility","hidden");
+            }, 3000);
+            hoihoi();
+            
+        }else if(1 == result){
+            //負けた場合
+            setTimeout(function(){
+                $('.jan').css("visibility","hidden");
+                $('.lose').css("visibility","visible");
+            }, 500);
+        
+        }else{
+            //あいこの場合
+                 
+        }
+    };
+    
+    function startChange(){
+            
+    }
+    
+    function hoihoi(){
+        
+    };
+});
+</script>
+</head>
+<body>
+
+<header>
+  <h1>おにくうさぎとじゃんけん！</h1>
+</header>
+
+    
+<main>
+    <div class="jan_main">
+        <div class="jan">
+            <div class="hand">
+                <div id="myhand"></div>
+            </div>
+            <div class="hand">
+                <div id="pchand"></div>
+                <!--
+                <div id="pc0"><img src="img/pc0.png" height="360px"></div>
+                <div id="pc1"><img src="img/pc1.png" height="360px"></div>
+                <div id="pc2"><img src="img/pc2.png" height="360px"></div>-->
+            </div>
+        </div>
+        <div class="lose">
+            <div class="oniku">
+                <img src="img/lose2.png" height="340px">
+            </div>
+        </div>
+        <div class="win">
+            <div id="win_box">
+                <div><img id="winImage" src="img/win2.png"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!--
+    <div>コンピュータの出した手は？</div>
+    <div id="pc"></div>
+    <div id="num"></div>-->
+</main>
+
+<footer>
+    <div class="btn_box">
+        <ul class="btn">
+            <li class="gu_btn"><img src="img/me0.png" height="100px"></li>
+            <li class="cho_btn"><img src="img/me1.png" height="100px"></li>
+            <li class="par_btn"><img src="img/me2.png" height="100px"></li>
+        </ul>
+    </div>
+    
+    <div class="usagi">
+        <img src="img/oniku.png">
+    </div>
+    <!--
+    <div class="allows_box">
+        <ul class="allows">
+            <li class="allow_up"><img src="img/allow_up.png"></li>
+        </ul>
+        <ul class="allows">
+            <li class="allow_left"><img src="img/allow_left.png"></li>
+            <li class="allow_right"><img src="img/allow_right.png"></li>
+        </ul>
+        <ul class="allows">
+            <li class="allow_buttom"><img src="img/allow_down.png"></li>
+        </ul>
+    </div>-->
+</footer>
+
+</body>
+</html>
